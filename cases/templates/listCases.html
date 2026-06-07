@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Cases List</title>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            width: 100px;
+            margin: 5px;
+        }
+        video {
+            width: 150px;
+            margin: 5px;
+        }
+    </style>
+
+</head>
+<body>
+<h1>Cases and Evidence</h1>
+<table>
+    <tr>
+        <th>Case ID</th>
+        <th>Case Name</th>
+        <th>Officer</th>
+        <th>Location</th>
+        <th>Date</th>
+        <th>Evidence Files</th>
+    </tr>
+    {% for case in cases %}
+    <tr>
+        <td>{{ case.id }}</td>
+        <td>{{ case.case_name }}</td>
+        <td>{{ case.officer_name }}</td>
+        <td>{{ case.case_loc }}</td>
+        <td>{{ case.case_date }}</td>
+        <td>
+            {{ case.evidences.count }} Evidences
+            <a href="{% url 'case_details' case.id %}">View Case Details</a>
+            
+             <a href="{% url 'add_evidence' case.id %}">Add Evidence</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
